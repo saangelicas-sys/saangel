@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Café Byte</title>
+  <meta name="description" content="Café Byte: cafeteria do bairro com cafés especiais, bolos caseiros, pedidos online e entrega.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <!-- Café Byte: projeto do curso Web do  Zero -->
+  <header class="topo">
+    <a href="#inicio" class="logo">☕ Café Byte</a>
+    <nav id="menu" class="menu">
+      <a href="#sobre">Sobre</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#pedido">Pedido</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <button id="botao-tema" class="botao-tema" aria-label="Mudar tema">🌙</button>
+    <button id="botao-menu" class="botao-menu" aria-label="Abrir menu">☰</button>
+  </header>
+  
+  <main>
+    <section id="inicio" class="destaque">
+      <p id="saudacao" class="saudacao">Olá! Que bom ter você por aqui.</p>
+      <h1>Café quentinho, código fresquinho.</h1>
+      <p>Cafés especiais, bolos caseiros e um cantinho com Wi-fi para curtir a vontade.</p>
+      <p id="status" class="satatus"></p>
+      <div id="clima" class="clima">⏳ Consultando o clima...</div>
+      <a href="#cardapio" class="botao">Ver cardápio</a>
+    </section>
+    
+    <section id="sobre" class="secao">
+      <h2>Sobre nós</h2>
+      <div class="duas-colunas">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/A_small_cup_of_coffee.JPG/500px-A_small_cup_of_coffee.JPG" alt="Xícara de café com pires e colher" width="500">
+        <div>
+          <p>O <strong>Café Byte</strong> nasceu da vontade de juntar duas paixões: um bom café e boas ideias. Aqui você encontra grãos selecionados, receitas caseiras e um ambiente tranquilo para estudar, trabalhar ou conversar.</p>
+          <ul>
+            <li>Grãos de pequenos produtores</li>
+            <li>Bolos e cafés feitos todo dia de manhã e na tarde</li>
+            <li>Wi-fi grátis e tomadas nas mesas</li>  
+          </ul>
+          </div>
+      </div>
+      <h3>Horário de funcionamento</h3>
+      <table class="horarios">
+        <tr>
+          <th>Dia</th>
+          <th>Horário</th>
+        </tr>
+        <tr>
+          <td>Segunda a sexta</td>
+          <td>5h às 20h</td>
+        </tr>
+        <tr>
+          <td>Sábado</td>
+          <td>Fechado</td>
+        </tr>
+        <tr>
+          <td>Domingo</td>
+          <td>5h às 18hr</td>
+        </tr>
+      </table>
+    </section>
+    
+    <section id="cardapio" class="secao">
+      <h2>Cardápio</h2>
+      <p>Escolha uma categoria ou procure pelo nome:</p>
+      <div class="filtros">
+        <input type="search" id="busca" class="busca" placeholder="🔍 Buscar no cardápio...">
+        <button class="filtro ativo" data-categoria="todos">Todos</button>
+        <button class="filtro" data-categoria="bebida">Bebida</button>
+        <button class="filtro" data-categoria="doce">Doces</button>
+        <button class="filtro" data-categoria="salgado">Salgados</button>
+      </div>
+      <div id="lista-produtos" class="cards"></div>  
+    </section>
+    
+    <section id="pedido" class="secao">
+      <h2>Meu pedido</h2>
+      <ul id="itens-pedido" class="itens-pedido"></ul>
+      <p class="total">Total: <strong id="total">R$ 0,00</strong></p>
+      
+      <h3>Entrega</h3>
+      <form id="form-entrega" class="form">
+        <label for="cep">CEP</label>
+        <input id="cep" placeholder="00000-000" maxlength="9" required>
+        <p id="msg-cep" class="mensagem"></p>
+        <label for="endereco">Endereço</label>
+        <input id="endereco" placeholder="Rua, bairro e cidade" required>
+        <label for="numero">Número</label>
+        <input id="numero" placeholder="Ex.: 123" required>
+        <button type="submit" class="botao">Finalizar pedido</button>
+      </form>
+      <p id="msg-pedido" class="mensagem"></p>
+    </section>        
+      
+    <section id="contato" class="secao">
+      <h2>Contato</h2>
+      <p>📌 Av. Floriano Peixoto, 123, Centro</p>
+      <p>☎️ <a href="tel:+5511999999999">(11) 99999-9999</a></p>
+      <p>📧 <a href="mailto:contato@cafebyte.com.br">contato@cafebyte.com.br</a></p>
+      <p>📷 <a href="https://www.instagram.com/saangel_black?utm_source=qr&cplk=MXJicnM3cmlkZzMzaW==" target="_blank">Siga a gente no Instagram</a></p>
+      <iframe class="mapa" title="Mapa do Café Byte" src="https://www.openstreetmap.org/export/embed.html?bbox=-46.640,-23.556,-46.626,-23.545&layer=mapnik&marker=-23.5505,-46.6333"></iframe>
+    </section>
+  </main>
+  
+  <footer class="rodape">
+    <p>&copy; 2026 Café Byte - Feito por Sara no curso Wed do Zero</p>
+    <a href="#inicio">Voltar ao topo &uarr;</a>
+  </footer>
+  <script src="js/script.js"></script>
+</body>
+</html>                   

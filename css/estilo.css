@@ -1,0 +1,438 @@
+/* ===== Café Byte: estilos ===== */
+
+/* Fonte Poppins, do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Paleta de cores do site: mude aqui e o site todo muda */
+:root{
+  --cor-fundo: #fbf6f1;
+  --cor-texto: #3b2a20;
+  --cor-cartao: #ffffff;
+  --cor-titulo: #4b2e1f;
+  --cor-cafe: #4b2e1f;
+  --cor-destaque: #d9822b;
+  --cor-suave: #f1e3d3;
+}
+
+/* Todos oss elementos: medidas mais previsiveis */
+*{
+  box-sizing: border-box;
+}
+
+body{
+  margin: 0;
+  font-family: 'Poppins', Arial, sans-serif;
+  line-height: 1.6;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+h1
+h2
+h3{
+  color: var(--cor-titulo);
+  line-height: 1.2;
+}
+
+a{
+  color: var(--cor-destaque);
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* Cabecalho e menu */
+.topo{
+  background-color: var(--cor-cafe);
+  padding: 16px 24px;
+}
+
+.logo{
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.menu a{
+  color: #ffffff;
+  text-decoration: none;
+  padding: 4px 8px;
+}
+
+.menu a:hover{
+  color: var(--cor-destaque);
+}
+
+/* Cada secão vira uma caixa branca centralizada */
+.secao{
+  max-width: 1000px;
+  margin: 32px auto;
+  padding: 32px;
+  background-color: var(--cor-cartao);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* Botao */
+.botao{
+  display: inline-block;
+  background-color: var(--cor-destaque);
+  color: #ffffff;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.botao:hover{
+  background-color: var(--cor-cafe);
+}
+
+/* Tabela de horários */
+.horarios{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.horarios th,
+.horarios td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--cor-suave);
+}
+
+/* Rodapé */
+.rodape{
+  background-color: var(--cor-cafe);
+  color: #ffffff;
+  text-align: center;
+  padding: 24px;
+}  
+
+/* ===== Layout ===== */
+
+/* Cabeçalho: logo à esquerda, menu à direita, sempre visível */
+.topo{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+ 
+ .menu{
+   display: flex;
+   gap: 8px;
+   margin-left: auto;
+}
+ 
+ /* Destaque: tudo centralizado */
+ .destaque{
+   min-height: 70vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   text-align:center;
+   padding: 48px 24px;
+   background: linear-grandient(135deg, var(--cor-suave), var(--cor-fundo));
+}  
+
+.destaque h1{
+  font-size: 3rem;
+  max-width: 700px;
+  margin: 8px 0 16px;
+}
+
+/* Sobre: foto e texto lado a lado */
+.duas-colunas{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+/* Cards do cardápio: grade que se ajusta sozinha */
+.cards{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.card{
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-suave);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+}
+
+.card h3{
+  margin: 8px 0;  
+}
+
+.emoji{
+  font-size: 3rem;
+}
+
+.preco{
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--cor-destaque);
+}
+
+/* Telas pequenas (celular): até 700px de largura */
+@media (max-width: 700px){
+  .topo{
+    flex-wrap: wrap;
+  }
+  
+  .destaque h1{
+    font-size: 2rem;
+  }
+  
+  .duas-colunas{
+    grid-template-columns: 1fr;
+  }
+  
+  .secao{
+    margin: 16px;
+    padding: 20px;
+  }
+}
+
+/* ===== Saudação e aviso de aberto/fechado ===== */
+.saudacao{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--cor-destaque);
+  margin: 0;
+}
+
+.status{
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+.aberto-agora{
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.fechado-agora{
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* ===== Modo escuro e menu no celular ===== */ 
+
+/* No modo escuro, só trocamosos valores das variáveis */
+body.escuro{
+  --cor-fundo: #1c1512; 
+  --cor-texto: #f3e9e2;
+  --cor-cartao: #2a201b;
+  --cor-titulo: #f2b56b;
+  --cor-suave: #3d2f27;
+}
+
+body{
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.botao-tema,
+.botao-menu{
+  background: none;
+  border: 2px solid var(--cor-destaque);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  padding: 4px 10px;
+  cursor: pointer;
+}
+
+/* O botão ☰ fica escondido no computador */
+.botao-menu{
+  display: none;
+}
+
+@media (max-width: 700px){
+  .botao-menu{
+    display: block;
+  }
+ 
+  .botao-tema{
+   margin-left: auto;
+  }
+  
+  /* No celular, o menu fica escondido até clicar no ☰ */
+  .menu {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    order: 3;
+  }
+  
+  .menu.mostrar{
+    display: flex;
+  }
+} 
+
+/* ===== Busca e filtros do cardápio ===== */
+.filtros{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.busca{
+  flex: 1 1 220px;
+  padding: 10px 16px;
+  border: 2px solid var(--cor-suave);
+  border-radius: 999px;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.filtro{
+  padding: 8px 16px;
+  border: 2px solid var(--cor-destaque);
+  border-radius: 999px;
+  background: none;
+  color: var(--cor-texto);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.filtro.ativo{
+  background-color: var(--cor-destaque);
+  color: #ffffff;
+}
+
+/* ===== Meu pedido ===== */
+.itens-pedido{
+  list-style: none;
+  padding: 0;
+}
+
+.itens-pedido li{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cor-suave);
+}
+
+.itens-pedido li span:first-child{
+  flex: 1;
+}
+
+.remover{
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--cor-destaque);
+  border-radius: 50%;
+  background: none;
+  color: var(--cor-texto);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.total{
+  font-size: 1.3rem;
+  text-align: right;
+}
+
+/* Formulario de entrega */
+.form{
+  display: grid;
+  gap: 6px;
+  max-width: 480px;
+}
+
+.form input{
+  padding: 10px 14px;
+  border: 2px solid var(--cor-suave);
+  border-radius: 8px;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form input:focus{
+  outline: none;
+  border-color: var(--cor-destaque);
+}
+
+.form .botao{
+  margin-top: 12px;
+  justify-self: start;
+}
+
+.mensagem{
+  font-weight: 600;
+  color: var(--cor-destaque);
+}
+
+/* ===== Clima e mapa ===== */
+.clima{
+  margin: 0 0 20px;
+  padding: 8px 20px;
+  background-color: var(--cor-cartao);
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.mapa{
+  width: 100%;
+  height: 300px;
+  border: 0;
+  border-radius: 12px;
+}
+
+/* ===== Acabamento ===== */
+
+/* Rolagem suave ao clicar nos links do menu */
+html{
+  scroll-behavior: smooth;
+}
+
+/* Ao pular para uma seção, deixa espaço para o cabeçalho fixo */
+section{
+  scroll-margin-top: 80px;
+}
+
+/* Contorno bem visível para quem navega pelo teclado (Tab) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible{
+  outline: 3px solid var(--cor-destaque);
+  outline-offset: 2px;
+}
+
+/* Cor do texto quando selecionado com o mause */
+::selection{
+  background-color: var(--cor-destaque);
+  color: #ffffff;
+}
+
+                   
+                      

@@ -67,8 +67,8 @@ botaoMenu.addEventListener('click', function (){
 });
       
 //  Clicou em um link do menu? Fecha o menu.
-menu.addEventListener('click', function ();
-  menu.classList.remove('mostrar');
+menu.addEventListener('click', function () {
+    menu.classList.remove('mostrar');
 });
       
 // ----- Cardápio: os dados -----
@@ -94,9 +94,9 @@ const produtos = [
 console.log('Produtos no cardápio: ' + produtos.length);
 
 // ----- Cardápio: mostrar na página -----
-const listaProdutos = document.querySelector('#lesta-produtos');
+const listaProdutos = document.querySelector('#lista-produtos');
 const busca = document.querySelector('#busca');
-const filtro = document.querySelectorAll('.filtro');
+const filtros = document.querySelectorAll('.filtro');
 let categoriaAtual = 'todos';
 
 function formatarPreco(valor){
@@ -115,14 +115,14 @@ function mostrarProdutos() {
    if (daCategoria && combinaBusca) {
      const card = document.createElement('article');
      card.className = 'card';
-     card.inner.HTML = `
+     card.innerHTML = `
        <span class="emoji">${produto.emoji}</span>
        <h3>${produto.nome}</h3>
        <p>${produto.descricao}</p>
        <p class="preco">${formatarPreco(produto.preco)}</p>
        <button class="botao" data-id="${produto.id}">Adicionar</button>
        `;
-       listaProdutosappendChild(card);
+       listaProdutos.appendChild(card);
        encontrados = encontrados + 1;
      }
   });
@@ -139,7 +139,7 @@ busca.addEventListener('input',mostrarProdutos);
 
 // Clicou em um filtro? Troca a categoria e marca o botão
 filtros.forEach(function (botao) {
-  botao.addEventListener('click',functio() {
+  botao.addEventListener('click', function () {
     filtros.forEach(function (outro) {
         outro.classList.remove('ativo');
       });
@@ -157,7 +157,7 @@ const totalPedido = document.querySelector('#total');
 let pedido = JSON.parse(localStorage.getItem('cafebyte-pedido')) || [];
 
 function salvarPedido() {
-  localStorage.setItem('cafebyte-pedido', JSON.stringfy(pedido));
+  localStorage.setItem('cafebyte-pedido', JSON.stringify(pedido));
 }
 
 function mostrarPedido() {
@@ -172,11 +172,11 @@ function mostrarPedido() {
     const subtotal = item.preco * item.quantidade;
     total = total + subtotal;
     const li = document.createElement('li');
-    li.innerHTML =
-    <span>${item.quantidade}x ${item.none}</span>
+    li.innerHTML = `
+    <span>${item.quantidade}x ${item.nome}</span>
     <span>${formatarPreco(subtotal)}</span>
     <button class="remover" data-posicao="${posicao}" aria-label="Tirar um">-</button>
-   `;
+    `;
    itensPedido.appendChild(li);
  });
  
@@ -200,7 +200,7 @@ function adicionarAoPedido(id) {
   }
   
   salvarPedido();
-  mostarPedido();
+  mostrarPedido();
 }
 
 // Um só "escutador" para todos os botões Adicionar
@@ -221,13 +221,13 @@ itensPedido.addEventListener('click', function (evento) {
       pedido.splice(posicao, 1);
     }
     salvarPedido();
-    mostarPedido();
+    mostrarPedido();
   }
 });
 
 // ----- Finalizar o pedido -----
 const formEntrega = document.querySelector('#form-entrega');
-const msgPedido = documento.querySelector('#msg-pedido');
+const msgPedido = document.querySelector('#msg-pedido');
 
 formEntrega.addEventListener('submit', function (evento) {
   evento.preventDefault(); // não deixa a página recarregar
@@ -238,8 +238,8 @@ formEntrega.addEventListener('submit', function (evento) {
   }
   
   const endereco = document.querySelector('#endereco').value;
-  const numero = document.querySlector('#numero').value;
-  msgPedido.textContent = '✅ Pedido recebido! Total: ${totalPedido.textContent}. Vamos entregar em${endereco}, nº ${numero}.`;
+  const numero = document.querySelector('#numero').value;
+  msgPedido.textContent = `✅ Pedido recebido! Total: ${totalPedido.textContent}. Vamos entregar em ${endereco}, nº ${numero}.`;
   
   pedido = [];
   salvarPedido();
@@ -250,7 +250,7 @@ formEntrega.addEventListener('submit', function (evento) {
 // Lembrar o tema escolhido na última visita
 if (localStorage.getItem('cafebyte-tema') === 'true') {
   document.body.classList.add('escuro');
-  atuaizarIconeTema();
+  atualizarIconeTema();
 }
 
 // ----- API 1: clima agora (Open-Meteo) -----
@@ -261,7 +261,7 @@ const caixaClima = document.querySelector('#clima');
 
 async function carregarClima() {
   const url = 'https://api.open-meteo.com/v1/forecast'
-    + `?latitude=${LATITUDA}&longitude=&{LONGITUDE}`
+    + `?latitude=${LATITUDE}&longitude=${LONGITUDE}`
     + '&current=temperature_2m';
     
   try {
@@ -278,7 +278,7 @@ async function carregarClima() {
       sugestao = 'Calorão! Um suco de laranja geladinho cai bem. 🍊';
     }
     
-    caixaClima.textContent = '🌡️ Agora faz ${temperatura}ºC por aqui. ${sugestao`;
+    caixaClima.textContent = `🌡️ Agora faz ${temperatura}ºC por aqui. ${sugestao}`;
   } catch (erro) {
     caixaClima.textContent = 'Não foi possível consultar o clima agora. ';
     console.log(erro);
@@ -303,7 +303,7 @@ async function buscarCep() {
   msgCep.textContent = '⏳ Procurando o endereço...';
   
   try {
-    const reposta = await fetch('https://viavep.com.br/ws/${cep}/json/`);
+    const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
     const dados = await resposta.json();
     
     if (dados.erro) {
@@ -324,5 +324,4 @@ async function buscarCep() {
 campoCep.addEventListener('change', buscarCep);
 
 // ------ Rodapé: ano sempre atualizado -----
-document.querySelector('#ano').textContent = new Date().getFullYear();          
-                                         
+document.querySelector('#ano').textContent = new Date().getFullYear();                                                 
